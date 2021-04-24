@@ -1,4 +1,4 @@
-package com.example.yang;
+package com.example.yang.conrtrollers;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,9 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LearnSpringBootApplication {
 
     public static void main(String[] args) {
-        System.out.println("hello world");
-        System.out.println("test");
         SpringApplication.run(LearnSpringBootApplication.class, args);
     }
-
 }
