@@ -1,4 +1,4 @@
-package com.example.yang.conrtrollers;
+package com.example.yang;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
