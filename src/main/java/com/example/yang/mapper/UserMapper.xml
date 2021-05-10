@@ -6,4 +6,10 @@
     <select id="getUserList" resultType="com.example.yang.pojo.User">
         select * from ay_user
     </select>
+    <select id="getUserById" parameterType="string" resultType="com.example.yang.pojo.User">
+        select * from ay_user where id = #{id}
+    </select>
+    <select id="addUser" parameterType="com.example.yang.pojo.User">
+        insert into ay_user(id, name, password) values (#{id}, #{name}, #{password})
+    </select>
 </mapper>
