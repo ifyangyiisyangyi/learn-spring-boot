@@ -1,4 +1,4 @@
-package com.example.yang;
+package com.example.yang.mapper;
 
 import com.example.yang.mapper.UserMapper;
 import com.example.yang.pojo.User;
