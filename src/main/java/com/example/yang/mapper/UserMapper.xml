@@ -18,4 +18,7 @@
     <select id="deleteUser" parameterType="String">
         delete from ay_user where id = #{id}
     </select>
+    <select id="getUserLike" resultType="com.example.yang.pojo.User">
+        select * from ay_user where name like #{value}
+    </select>
 </mapper>

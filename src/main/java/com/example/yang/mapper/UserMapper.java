@@ -20,4 +20,7 @@ public interface UserMapper {
 
     // delete
     Integer deleteUser(String id);
+
+    // 模糊查询
+    List<User> getUserLike(String value);
 }

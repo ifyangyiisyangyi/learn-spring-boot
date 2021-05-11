@@ -30,7 +30,7 @@ public class UserMapperTest {
         sqlSession.close();
     }
 
-    //增删改查需要提交事务
+    //增删改需要提交事务
     @Test
     public void addUser() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
@@ -55,6 +55,18 @@ public class UserMapperTest {
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         mapper.deleteUser("3");
         sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Test
+    // 模糊查询
+    public void getUserLike(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<User> userList = mapper.getUserLike("%阿%");
+        for (User user : userList) {
+            System.out.println(user);
+        }
         sqlSession.close();
     }
 
