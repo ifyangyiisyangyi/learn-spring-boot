@@ -12,4 +12,10 @@
     <select id="addUser" parameterType="com.example.yang.pojo.User">
         insert into ay_user(id, name, password) values (#{id}, #{name}, #{password})
     </select>
+    <select id="updateUser" parameterType="com.example.yang.pojo.User">
+        update ay_user set password = #{password} where id = #{id}
+    </select>
+    <select id="deleteUser" parameterType="String">
+        delete from ay_user where id = #{id}
+    </select>
 </mapper>

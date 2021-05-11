@@ -10,33 +10,50 @@ import java.util.List;
 
 public class UserMapperTest {
     @Test
-    public void test(){
+    public void test() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
-
-        // 方式一
         UserMapper userDao = sqlSession.getMapper(UserMapper.class);
         List<User> userList = userDao.getUserList();
-
-        for (User user : userList){
+        for (User user : userList) {
             System.out.println(user);
         }
         // 关闭sqlsession
         sqlSession.close();
     }
+
     @Test
-    public void getUserById(){
+    public void getUserById() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         User user = mapper.getUserById("1");
         System.out.println(user);
         sqlSession.close();
     }
+
     //增删改查需要提交事务
     @Test
-    public void addUser(){
+    public void addUser() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         mapper.addUser(new User("3", "bb", "123"));
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Test
+    public void updateUser() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        mapper.updateUser(new User("2", "阿兰", "456"));
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Test
+    public void deleteUser() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        mapper.deleteUser("3");
         sqlSession.commit();
         sqlSession.close();
     }

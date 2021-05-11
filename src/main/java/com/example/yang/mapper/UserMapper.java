@@ -14,4 +14,10 @@ public interface UserMapper {
     //insert一个用户，使用包装类
     // TODO: 2021/5/11  
     Integer addUser(User user);
+
+    // update
+    Integer updateUser(User id);
+
+    // delete
+    Integer deleteUser(String id);
 }
