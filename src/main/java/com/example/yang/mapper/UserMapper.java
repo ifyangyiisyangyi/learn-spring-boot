@@ -1,9 +1,11 @@
 package com.example.yang.mapper;
 
 import com.example.yang.pojo.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface UserMapper {
     // 查询全部用户
     List<User> getUserList();

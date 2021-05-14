@@ -9,13 +9,13 @@
     <select id="getUserById" parameterType="string" resultType="com.example.yang.pojo.User">
         select * from ay_user where id = #{id}
     </select>
-    <select id="addUser" parameterType="com.example.yang.pojo.User">
+    <select id="addUser" parameterType="com.example.yang.pojo.User" resultType="int">
         insert into ay_user(id, name, password) values (#{id}, #{name}, #{password})
     </select>
-    <select id="updateUser" parameterType="com.example.yang.pojo.User">
+    <select id="updateUser" parameterType="com.example.yang.pojo.User" resultType="int">
         update ay_user set password = #{password} where id = #{id}
     </select>
-    <select id="deleteUser" parameterType="String">
+    <select id="deleteUser" parameterType="String" resultType="int">
         delete from ay_user where id = #{id}
     </select>
     <select id="getUserLike" resultType="com.example.yang.pojo.User">
