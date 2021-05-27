@@ -1,6 +1,7 @@
 package com.example.yang.mapper;
 
 import com.example.yang.pojo.User;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
