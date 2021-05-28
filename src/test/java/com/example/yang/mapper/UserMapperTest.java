@@ -2,7 +2,7 @@ package com.example.yang.mapper;
 
 import com.example.yang.mapper.UserMapper;
 import com.example.yang.pojo.User;
-import com.example.yang.utils.MybatisUtils;
+//import com.example.yang.utils.MybatisUtils;
 //import org.apache.ibatis.session.SqlSession;
 //import org.junit.Test;
 

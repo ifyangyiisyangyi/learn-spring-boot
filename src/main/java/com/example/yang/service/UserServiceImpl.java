@@ -2,23 +2,27 @@ package com.example.yang.service;
 
 import com.example.yang.mapper.UserMapper;
 import com.example.yang.pojo.User;
-import com.example.yang.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
-@Service(value = "UserServiceImpl")
+
+@Service(value = "UserService")
 public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
 
     @Override
-    public List<User> addUser(User user) {
-        List<User> users = userMapper.getUserList();
-        if(users.isEmpty()) {
-            userMapper.addUser(user);
-        }
-        return users;
+    public Boolean addUser(User user) {
+        userMapper.addUser(user);
+
+        return true;
+    }
+
+
+    @Override
+    public User searchUser(String id) {
+        User user = userMapper.getUserById(id);
+        return user;
     }
 }

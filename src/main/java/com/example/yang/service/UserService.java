@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface UserService {
     // 添加用户
-    List<User> addUser(User user);
+    Boolean addUser(User user);
+
+    User searchUser(String id);
 }

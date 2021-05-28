@@ -1,12 +1,13 @@
 package com.example.yang.mapper;
 
 import com.example.yang.pojo.User;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@Mapper
 public interface UserMapper {
     // 查询全部用户
     List<User> getUserList();
