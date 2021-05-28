@@ -16,8 +16,7 @@ public class ShowLinkages {
 
     @RequestMapping(value = "/linkages", method = {RequestMethod.GET}, produces = "application/json;charset=UTF-8")
     public List<Linkage> showLinkages() {
-        List<Linkage> linkages = linkagesService.getLinkages();
-        return linkages;
+        return linkagesService.getLinkages();
 
     }
 }
