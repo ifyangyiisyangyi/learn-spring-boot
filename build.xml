@@ -1,73 +1,59 @@
 <?xml version="1.0" ?>
-<project name="testCodeCoveage"  basedir="/usr/share/ant/bin/report" xmlns:jacoco="antlib:org.jacoco.ant" xmlns:sonar="antlib:org.sonar.ant" default="all">
-  <!--Jacoco的安装路径-->
-  <property name="jacocoantPath" value="/usr/local/jacoco/bin/jacocoant.jar"/>
-  <!--最终生成.exec文件的路径，Jacoco就是根据这个文件生成最终的报告的-->
-  <property name="jacocoexecPath" value="/mnt/coverage/jacoco.exec"/>
-    <!--生成覆盖率报告的路径-->
-  <property name="reportfolderPath" value="${basedir}/report/"/>
-  <!--远程服务的ip地址，如有多个，可设置多个，name需修改-->
-  <property name="server_ip" value="39.27.100.239"/>
-
-  <!--待测程序.class文件路径-->
-  <property name="yyClasspath" value="/home/devloper/setup/learn-spring-boot/target/classes/com/example" />         
-  
-
-  
-  <!--merge task，当有多个待测程序时，生成报告前需将所有.exec文件merge成一个-->
-  <target name="merge" depends="dump">
-        <jacoco:merge destfile="jacoco.exec">
-       <fileset dir="${basedir}" includes="*.exec"/>
-        </jacoco:merge>
-  </target>
-
-  <!--dump任务:
-      根据前面配置的ip地址，和端口号，访问目标服务，并生成.exec文件。-->
-
-  <target name="dump">
-        <!-- reset="true"是指在dump完成之后，重置jvm中的覆盖率数据为空。append="true"是指dump出来的exec文件为增量方式 -->
-        <jacoco:dump address="${server_ip}" reset="false" destfile="${basedir}/yy.exec" port="15501" append="true"/>
-  </target>
+<project name="coverage" xmlns:jacoco="antlib:org.jacoco.ant" default="report">
+<!--Jacoco的安装路径-->
+<property name="jacocoantPath" value="/usr/local/jacoco/lib/jacocoant.jar"/>
+<!--最终生成.exec文件的路径，Jacoco就是根据这个文件生成最终的报告的-->
+<property name="jacocoexecPath" value="/mnt/coverage/jacoco/jacoco.exec"/>
+<!--生成覆盖率报告的路径-->
+<property name="reportfolderPath" value="/mnt/coverage/jacoco/report"/>
+<!--远程tomcat服务的ip地址-->
+<property name="server_ip" value="127.0.0.1"/>
+<!--前面配置的远程tomcat服务打开的端口，要跟上面配置的一样-->
+<property name="server_port" value="8060"/>
+<!--源代码路径-->
+<property name="wqltest-src" value="/home/devloper/setup/learn-spring-boot/src/main/java" />
 
 
-  <!--report任务:
-      根据前面配置的源代码路径和.class文件路径，
-      根据dump后，生成的.exec文件，生成最终的html覆盖率报告。-->
-  <target name="report">
-      <delete dir="${reportfolderPath}" />
-      <mkdir dir="${reportfolderPath}" />
+<!--.class文件路径-->
+<property name="wqltest-classpath" value="/home/devloper/setup/learn-spring-boot/target/classes" />
 
-      <jacoco:report>
-          <executiondata>
-                 <file file="${basedir}/jacoco.exec" />
+<!--让ant知道去哪儿找Jacoco-->
+<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+<classpath path="${jacocoantPath}" />
+</taskdef>
 
-          </executiondata>
+<!--dump任务:
+根据前面配置的ip地址，和端口号，
+访问目标tomcat服务，并生成.exec文件。-->
+<target name="dump">
+<jacoco:dump address="${server_ip}" reset="false" destfile="${jacocoexecPath}" port="${server_port}" append="false"/>
+</target>
 
-          <structure name="JaCoCo Report">
+<!--jacoco任务:
+根据前面配置的源代码路径和.class文件路径，
+根据dump后，生成的.exec文件，生成最终的html覆盖率报告。-->
+<target name="report" depends="dump">
+<delete dir="${reportfolderPath}" />
+<mkdir dir="${reportfolderPath}" />
 
-          <group name="waterommp related">
-                  <classfiles>
-                      <fileset dir="${waterommpClasspath}" >
+<jacoco:report>
+<executiondata>
+<file file="${jacocoexecPath}" />
+</executiondata>
 
-                      </fileset>
-                  </classfiles>
-       <!--  exclude中为生成报告时排除的class   -->
+<structure name="JaCoCo Report">
+<group name="wqltest">
+<classfiles>
+<fileset dir="${wqltest-classpath}" />
+</classfiles>
+<sourcefiles encoding="UTF-8">
+<fileset dir="${wqltest-src}" />
+</sourcefiles>
+</group>
 
-<!--              <sourcefiles encoding="gbk">
-                      <fileset dir="${mcmSrcpath}" >
-                        <exclude name="**/north/control/iosconstans/*.java"/>
-                      </fileset>
-                  </sourcefiles>
--->
-              </group>
-          </structure>
+</structure>
 
-          <html destdir="${reportfolderPath}/report" encoding="utf-8" />
-          <csv destfile="${reportfolderPath}/report.csv"   />
-          <xml destfile="${reportfolderPath}/report.xml" />
-
-      </jacoco:report>
-  </target>
-  <target name="all" />
-
+<html destdir="${reportfolderPath}" encoding="utf-8" />
+</jacoco:report>
+</target>
 </project>
