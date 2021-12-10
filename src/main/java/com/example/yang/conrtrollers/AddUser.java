@@ -24,7 +24,7 @@ public class AddUser {
         return user;
     }
 
-    @RequestMapping(value = "/searchUser", method = {RequestMethod.POST, RequestMethod.GET}, produces = {"application/json;charset=UTF-8"})
+    @GetMapping(value = "/searchUser")
     public User searchUser(@RequestParam(value = "id") String id) {
         User user = new User();
         user = UserService.searchUser(id);

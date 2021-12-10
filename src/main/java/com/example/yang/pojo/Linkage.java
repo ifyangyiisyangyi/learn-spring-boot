@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class Linkage {
     private int id;
-    private String title;
-    private String linkage;
+    private String name;
+    private String link;
+    private String discribe;
 }

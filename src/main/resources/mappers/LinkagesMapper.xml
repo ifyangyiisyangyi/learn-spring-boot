@@ -4,6 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.yang.mapper.LinkageMapper">
     <select id="getLinkages" resultType="com.example.yang.pojo.Linkage">
-        select * from linkages
+        select id,name,link,discribe from linkages
     </select>
 </mapper>
