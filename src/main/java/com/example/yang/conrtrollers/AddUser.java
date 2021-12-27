@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 @RequestMapping(value = "/user")
 public class AddUser {
     @Resource
-    UserService UserService;
+    UserService userService;
 
     @RequestMapping(value = "/addUser", method = {RequestMethod.POST, RequestMethod.GET}, produces = {"application/json;charset=UTF-8"})
     public User addUser(@RequestParam(value = "id", required = true) String id,
@@ -20,14 +20,14 @@ public class AddUser {
         user.setId(id);
         user.setName(name);
         user.setPassword(password);
-        UserService.addUser(user);
+        userService.addUser(user);
         return user;
     }
 
     @GetMapping(value = "/searchUser")
     public User searchUser(@RequestParam(value = "id") String id) {
         User user = new User();
-        user = UserService.searchUser(id);
+        user = userService.searchUser(id);
         return user;
     }
 }

@@ -7,5 +7,5 @@ public class Linkage {
     private int id;
     private String name;
     private String link;
-    private String discribe;
+    private String describe;
 }

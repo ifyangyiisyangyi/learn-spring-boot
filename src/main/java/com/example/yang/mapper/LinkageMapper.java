@@ -8,4 +8,5 @@ import java.util.List;
 @Mapper
 public interface LinkageMapper {
     List<Linkage> getLinkages();
+    Linkage addLinkage(Linkage linkage);
 }

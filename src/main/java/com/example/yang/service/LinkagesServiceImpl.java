@@ -18,4 +18,10 @@ public class LinkagesServiceImpl implements LinkagesService {
         List<Linkage> linkages = linkageMapper.getLinkages();
         return linkages;
     }
+
+    @Override
+    public Boolean addLinkage(Linkage linkage) {
+        linkageMapper.addLinkage(linkage);
+        return true;
+    }
 }
