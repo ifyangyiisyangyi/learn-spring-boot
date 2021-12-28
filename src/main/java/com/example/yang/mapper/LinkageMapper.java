@@ -9,4 +9,6 @@ import java.util.List;
 public interface LinkageMapper {
     List<Linkage> getLinkages();
     Linkage addLinkage(Linkage linkage);
+    Linkage delLinkage(Integer id);
+    Linkage updateLinkage(Linkage linkage);
 }

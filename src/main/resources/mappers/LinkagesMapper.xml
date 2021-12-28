@@ -10,4 +10,16 @@
         insert into linkages(name, link, `describe`)
         values (#{name}, #{link}, #{describe})
     </select>
+    <select id="delLinkage" resultType="com.example.yang.pojo.Linkage">
+        delete from linkages where id = #{id}
+    </select>
+    <select id="updateLinkage" resultType="com.example.yang.pojo.Linkage">
+        update linkages
+        <set>
+            <if test = "name != null" >name = #{name}</if>
+            <if test = "link != null" >link = #{link}</if>
+            <if test = "describe != null">describe = #{describe}</if>
+        </set>
+        where id = #{id}
+    </select>
 </mapper>
