@@ -2,13 +2,12 @@ package com.example.yang.conrtrollers.tools;
 
 import com.example.yang.pojo.Linkage;
 import com.example.yang.service.LinkagesService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping(value = "/linkage")
@@ -34,26 +33,19 @@ public class ShowLinkages {
         linkage.setDescribe(describe);
         return linkagesService.addLinkage(linkage);
     }
+
     // 删除
     @RequestMapping(value = "/del", method = {RequestMethod.GET}, produces = "application/json;charset=UTF-8")
-    public Boolean delLinkage(@RequestParam(value = "id", required = true) Integer id){
+    public Boolean delLinkage(@RequestParam(value = "id", required = true) Integer id) {
         return linkagesService.delLinkage(id);
     }
+
     // 修改
     @RequestMapping(value = "/update", method = {RequestMethod.POST}, produces = "application/json;charset=UTF-8")
-    public Linkage updateLinkage(@RequestParam(value = "id", required = true) Integer id,
-                                 @RequestParam(value = "name", required = false) String name,
-                                 @RequestParam(value = "link", required = false) String link,
-                                 @RequestParam(value = "describe", required = false) String describe){
-        Linkage linkage = new Linkage();
-        linkage.setId(id);
-        linkage.setName(name);
-        linkage.setLink(link);
-        linkage.setDescribe(describe);
+    public Linkage updateLinkage(@RequestBody Linkage linkage) {
         if (linkage.getName() == null && linkage.getLink() == null && linkage.getDescribe() == null) {
             return linkage;
-        }
-        else {
+        } else {
             return linkagesService.updateLinkage(linkage);
         }
     }
