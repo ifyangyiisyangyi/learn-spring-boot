@@ -25,7 +25,7 @@ public class ShowLinkages {
 
     // 新增
     @RequestMapping(value = "/add", method = {RequestMethod.POST}, produces = "application/json;charset=UTF-8")
-    public Boolean addLinkage(@RequestBody Linkage linkage) {
+    public Linkage addLinkage(@RequestBody Linkage linkage) {
         System.out.println(linkage);
         return linkagesService.addLinkage(linkage);
     }

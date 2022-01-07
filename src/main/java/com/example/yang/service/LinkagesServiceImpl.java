@@ -21,9 +21,9 @@ public class LinkagesServiceImpl implements LinkagesService {
 
     //添加
     @Override
-    public Boolean addLinkage(Linkage linkage) {
+    public Linkage addLinkage(Linkage linkage) {
         linkageMapper.addLinkage(linkage);
-        return true;
+        return linkage;
     }
 
     // 删除

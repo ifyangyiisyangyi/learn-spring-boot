@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface LinkagesService {
     List<Linkage> getLinkages();
-    Boolean addLinkage(Linkage linkage);
+    Linkage addLinkage(Linkage linkage);
     Boolean delLinkage(Integer id);
     Linkage updateLinkage(Linkage linkage);
 }
