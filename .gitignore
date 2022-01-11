@@ -57,3 +57,4 @@ build/
 ### VS Code ###
 .vscode/
 >>>>>>> 9ba2fc346149e91b8e87f118554a898337958570
+/logs/

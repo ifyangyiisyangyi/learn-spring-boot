@@ -2,26 +2,18 @@ package com.example.yang.conrtrollers.tools;
 
 import com.example.yang.pojo.Linkage;
 import com.example.yang.service.LinkagesService;
+import com.example.yang.util.PageRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/linkage")
 @Slf4j  // 等同于下面的注释
 public class ShowLinkages {
-//    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(ShowLinkages.class);
+    //    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(ShowLinkages.class);
     @Resource
     LinkagesService linkagesService;
-
-    // 列表
-    @RequestMapping(value = "/list", method = {RequestMethod.GET}, produces = "application/json;charset=UTF-8")
-    public List<Linkage> showLinkages() {
-        log.info("测试log4j2");
-        return linkagesService.getLinkages();
-
-    }
 
     // 新增
     @RequestMapping(value = "/add", method = {RequestMethod.POST}, produces = "application/json;charset=UTF-8")
@@ -32,7 +24,7 @@ public class ShowLinkages {
 
     // 删除
     @RequestMapping(value = "/del", method = {RequestMethod.GET}, produces = "application/json;charset=UTF-8")
-    public Boolean delLinkage(@RequestParam(value = "id", required = true) Integer id) {
+    public Boolean delLinkage(@RequestParam(value = "id") Integer id) {
         return linkagesService.delLinkage(id);
     }
 
@@ -44,5 +36,11 @@ public class ShowLinkages {
         } else {
             return linkagesService.updateLinkage(linkage);
         }
+    }
+
+    // 分页查询
+    @PostMapping(value = "/list")
+    public Object findPage(@RequestBody PageRequest pageRequest) {
+        return linkagesService.findPage(pageRequest);
     }
 }
