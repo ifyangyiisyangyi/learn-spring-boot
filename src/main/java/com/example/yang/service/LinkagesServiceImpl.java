@@ -8,6 +8,7 @@ import com.example.yang.util.PageUtils;
 import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -36,12 +37,15 @@ public class LinkagesServiceImpl implements LinkagesService {
         linkageMapper.updateLinkage(linkage);
         return linkage;
     }
+
+    // 查询
     public PageResult findPage(PageRequest pageRequest) {
         return PageUtils.getPageResult(pageRequest, getPageInfo(pageRequest));
     }
 
     /**
      * 调用分页插件完成分页
+     *
      * @param pageRequest
      * @return
      */

@@ -2,19 +2,20 @@ package com.example.yang.mapper;
 
 import com.example.yang.pojo.Linkage;
 import org.apache.ibatis.annotations.Mapper;
-
 import java.util.List;
 
 @Mapper
 public interface LinkageMapper {
     /**
      * 查询全部
+     *
      * @return
      */
     List<Linkage> getLinkages();
 
     /**
      * 添加
+     *
      * @param linkage
      * @return
      */
@@ -22,6 +23,7 @@ public interface LinkageMapper {
 
     /**
      * 删除
+     *
      * @param id
      * @return
      */
@@ -29,14 +31,9 @@ public interface LinkageMapper {
 
     /**
      * 更新
+     *
      * @param linkage
      * @return
      */
     Linkage updateLinkage(Linkage linkage);
-
-    /**
-     * 分页查询
-     */
-    List<Linkage> selectPage();
-
 }
