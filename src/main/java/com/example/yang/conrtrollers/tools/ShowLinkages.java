@@ -1,4 +1,4 @@
-package com.example.yang.conrtrollers.Tools;
+package com.example.yang.conrtrollers.tools;
 
 import com.example.yang.pojo.Linkage;
 import com.example.yang.service.LinkagesService;
