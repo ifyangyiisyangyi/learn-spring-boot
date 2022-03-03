@@ -10,18 +10,19 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 @Component
 public class HttpClientTest {
-    //    @Scheduled(cron = "0 * * * * *")
+//    @Scheduled(cron = "1 * * * * *")
     public void test() {
         System.out.println("11111111111");
     }
 
-//    @Scheduled(cron = "* * * * * *")
+//    @Scheduled(cron = "1 * * * * *")
     /**
      * post请求测试
      */
