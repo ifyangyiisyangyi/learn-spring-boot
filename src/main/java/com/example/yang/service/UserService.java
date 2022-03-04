@@ -6,6 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+
 
 @Service
 @Slf4j
@@ -18,16 +20,18 @@ public class UserService {
         return userMapper.selectUserById(id);
     }
 
-    public boolean login(User user) {
+    public boolean login(User user) throws IOException {
         String username = user.getUsername();
         String password = user.getPassword();
         User user1 = userMapper.selectUserByName(username);
         if(user1 == null) {
+            log.info("用户不存在");
             return false;
         }else {
             if(user1.getPassword().equals(password)){
                 return true;
             }else {
+                log.info("密码不符");
                 return false;
             }
         }

@@ -7,11 +7,11 @@
     , username, password</sql>
     <select id="selectUserById" resultType="com.example.yang.pojo.User">
         select id
-        from User;
+        from User where id = #{id};
     </select>
     <select id="selectUserByName" resultType="com.example.yang.pojo.User">
         select id, username, password
-        from user;
+        from user where username = #{username};
     </select>
     <insert id="insertUser" parameterType="com.example.yang.pojo.User">
         insert into user(username, password) values(#{username}, #{password});
