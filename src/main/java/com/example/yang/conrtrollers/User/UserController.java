@@ -1,6 +1,7 @@
 package com.example.yang.conrtrollers.User;
 
 import com.example.yang.pojo.User;
+import com.example.yang.result.ResultVO;
 import com.example.yang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
+import static com.example.yang.result.ResultCode.*;
+
 @RestController
 public class UserController {
 
@@ -17,8 +20,14 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(value = "/login", method = {RequestMethod.POST}, produces = "application/json;charset=UTF-8")
-    public boolean login(@RequestBody User user) throws IOException {
-        return userService.login(user);
+    public ResultVO login(@RequestBody User user) throws IOException {
+        if (userService.login(user) == 2000){
+            return new ResultVO(USER_NOT_EXIST);
+        } else if (userService.login(user) == 2001) {
+            return new ResultVO(USER_LOGIN_FAIL);
+        }else {
+            return new ResultVO(SUCCESS);
+        }
     }
 
     @RequestMapping(value = "/register", method = {RequestMethod.POST}, produces = "application/json;charset=UTF-8")

@@ -149,7 +149,6 @@ public class AutoOrderd {
      * 3ds处理
      */
     public void cko_review(String pay_id) throws IOException {
-        System.out.println(pay_id);
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
@@ -164,7 +163,7 @@ public class AutoOrderd {
                 .addHeader("Content-Type", "application/json")
                 .build();
         Response response = client.newCall(request).execute();
-        System.out.println(response.body().string());
+        log.info(response.body().string());
     }
 
 }

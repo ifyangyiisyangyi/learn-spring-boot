@@ -11,6 +11,10 @@ public class ResultVO<T> {
     public ResultVO(T data) {
         this(ResultCode.SUCCESS, data);
     }
+    public ResultVO(ResultCode resultCode) {
+        this.code = resultCode.getCode();
+        this.msg = resultCode.getMsg();
+    }
     public ResultVO(ResultCode resultCode, T data) {
         this.code = resultCode.getCode();
         this.msg = resultCode.getMsg();
