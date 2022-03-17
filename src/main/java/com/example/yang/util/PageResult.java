@@ -28,7 +28,7 @@ public class PageResult {
     /**
      * 数据模型
      */
-    private List<?> content;
+    private List<?> data;
 
 
 }
