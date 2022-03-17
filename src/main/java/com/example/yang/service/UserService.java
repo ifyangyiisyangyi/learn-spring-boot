@@ -3,9 +3,9 @@ package com.example.yang.service;
 import com.example.yang.mapper.UserMapper;
 import com.example.yang.pojo.User;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.io.IOException;
+
+import javax.annotation.Resource;
 
 import static com.example.yang.result.ResultCode.USER_LOGIN_FAIL;
 import static com.example.yang.result.ResultCode.USER_NOT_EXIST;
@@ -15,14 +15,14 @@ import static com.example.yang.result.ResultCode.USER_NOT_EXIST;
 @Slf4j
 public class UserService {
 
-    @Autowired
+    @Resource
     private UserMapper userMapper;
 
     public User selectUserById(int id) {
         return userMapper.selectUserById(id);
     }
 
-    public Integer login(User user) throws IOException {
+    public Integer login(User user) {
         String username = user.getUsername();
         String password = user.getPassword();
         User user1 = userMapper.selectUserByName(username);
@@ -44,13 +44,9 @@ public class UserService {
             log.info("用户名已存在");
             return false;
         } else {
-            Integer x = userMapper.insertUser(user);
+            int x = userMapper.insertUser(user);
             System.out.println("x的值:" + x);
-            if (x > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return x > 0;
         }
     }
 }

@@ -14,9 +14,8 @@ public class AutoOrderd {
 
     /**
      * 获取token
-     * @return
      */
-    public String setAuthorization() {
+    public String setAuthorization(){
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
@@ -29,9 +28,8 @@ public class AutoOrderd {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            JSONObject jsonObject = JSON.parseObject(response.body().string());
-            String Authorization = jsonObject.getJSONObject("data").get("token_type").toString() + " " +  jsonObject.getJSONObject("data").get("access_token").toString();
-            return Authorization;
+            JSONObject jsonObject = JSON.parseObject(response.body() != null ? response.body().string() : null);
+            return jsonObject.getJSONObject("data").get("token_type").toString() + " " +  jsonObject.getJSONObject("data").get("access_token").toString();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,7 +41,7 @@ public class AutoOrderd {
     /**
      * 创建订单
      */
-    public String placeOrder() {
+    public String placeOrder() throws IOException{
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         MediaType mediaType = MediaType.parse("application/json");
@@ -61,7 +59,10 @@ public class AutoOrderd {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            JSONObject jsonObject = JSON.parseObject(response.body().string());
+            JSONObject jsonObject = null;
+            if (response.body() != null) {
+                jsonObject = JSON.parseObject(response.body().string());
+            }
             String orderId = jsonObject.getJSONObject("data").get("order_id").toString();
             if(response.isSuccessful()){
                 log.info("下单成功，订单号是：" + orderId);
@@ -79,7 +80,7 @@ public class AutoOrderd {
     public String getPayInfo() throws IOException {
         String order_id = placeOrder();
         String payId = "";
-        Boolean mark = true;
+        boolean mark = true;
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         Request request = new Request.Builder()
@@ -92,14 +93,14 @@ public class AutoOrderd {
         while (mark){
             Response response = client.newCall(request).execute();
             JSONObject jsonObject = JSON.parseObject(response.body().string());
-            if (jsonObject.getJSONObject("data").get("pay_channel").toString() == "3") {
+            if (jsonObject.getJSONObject("data").get("pay_channel").toString().equals("3")) {
                 mark = false;
             }
             payId = jsonObject.getJSONObject("data").get("pay_id").toString();
             log.info("支付单号:" + payId);
-            return payId;
+//            return payId;
         }
-        return null;
+        return payId;
     }
 
     /**
@@ -118,8 +119,7 @@ public class AutoOrderd {
                 .build();
         Response response = client.newCall(request).execute();
         JSONObject jsonObject = JSON.parseObject(response.body().string());
-        String token = jsonObject.getString("token");
-        return token;
+        return jsonObject.getString("token");
     }
 
     /**

@@ -1,22 +1,13 @@
 package com.example.yang.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import java.util.Locale;
 
 //扩展springmvc
 @Configuration
 public class MyMvcConfig implements WebMvcConfigurer {
 
-//    @Bean
-//    public ViewResolver myViewResoler(){
-//        return new MyViewResolver();
-//    }
     @Override   // 处理跨域
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")

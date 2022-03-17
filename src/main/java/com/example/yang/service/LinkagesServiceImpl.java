@@ -54,7 +54,7 @@ public class LinkagesServiceImpl implements LinkagesService {
         int pageSize = pageRequest.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
         List<Linkage> sysMenus = linkageMapper.getLinkages();
-        return new PageInfo<Linkage>(sysMenus);
+        return new PageInfo<>(sysMenus);
     }
 
 }
