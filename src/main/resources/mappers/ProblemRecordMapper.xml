@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.yang.mapper.ProblemRecordMapper">
+    <sql id="Base_Column_List">id, title, function, `describe`, discoverTime, endTime, followUpProcess, summary, qa, dev,
+        createTime, updateTime
+    </sql>
+    <select id="getProblemRecord" resultType="com.example.yang.pojo.ProblemRecord">
+        select
+        <include refid="Base_Column_List"/> from problem_record
+    </select>
+    <insert id="insertProblemRecord" parameterType="com.example.yang.pojo.ProblemRecord">
+        insert into problem_record
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="title != null">
+                title,
+            </if>
+            <if test="function != null">
+                function,
+            </if>
+            <if test="describe != null">
+                `describe`,
+            </if>
+            <if test="discoverTime != null">
+                discoverTime,
+            </if>
+            <if test="endTime != null">
+                endTime,
+            </if>
+            <if test="followUpProcess != null">
+                followUpProcess,
+            </if>
+            <if test="summary != null">
+                summary,
+            </if>
+            <if test="qa != null">
+                qa,
+            </if>
+            <if test="dev != null">
+                dev,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="title != null">
+                #{title},
+            </if>
+            <if test="function != null">
+                #{function},
+            </if>
+            <if test="describe != null">
+                #{describe},
+            </if>
+            <if test="discoverTime != null">
+                #{discoverTime},
+            </if>
+            <if test="endTime != null">
+                #{endTime},
+            </if>
+            <if test="followUpProcess != null">
+                #{followUpProcess},
+            </if>
+            <if test="summary != null">
+                #{summary},
+            </if>
+            <if test="qa != null">
+                #{qa},
+            </if>
+            <if test="dev != null">
+                #{dev},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateProblemRecord" parameterType="int">
+        update problem_record
+        <set>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="function != null">
+                function = #{function},
+            </if>
+            <if test="describe != null">
+                describe = #{describe},
+            </if>
+            <if test="discoverTime != null">
+                discoverTime = #{discoverTime},
+            </if>
+            <if test="endTime != null">
+                endTime = #{endTime},
+            </if>
+            <if test="followUpProcess != null">
+                followUpProcess = #{followUpProcess},
+            </if>
+            <if test="summary != null">
+                summary = #{summary},
+            </if>
+            <if test="qa != null">
+                qa = #{qa},
+            </if>
+            <if test="dev != null">
+                dev = #{dev},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+    <delete id="deleteProblemRecord" parameterType="int">
+        delete from problem_record where id = #{id};
+    </delete>
+</mapper>
