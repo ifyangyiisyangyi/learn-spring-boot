@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.yang.mapper.QaReportMapper">
+  <resultMap id="BaseResultMap" type="com.example.yang.pojo.QaReport">
+    <!--@mbg.generated-->
+    <!--@Table qa_report-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="prd_addr" jdbcType="VARCHAR" property="prdAddr" />
+    <result column="dev_addr" jdbcType="VARCHAR" property="devAddr" />
+    <result column="qa" jdbcType="VARCHAR" property="qa" />
+    <result column="dev" jdbcType="VARCHAR" property="dev" />
+    <result column="open_bug" jdbcType="INTEGER" property="openBug" />
+    <result column="close_bug" jdbcType="VARCHAR" property="closeBug" />
+    <result column="total_bug" jdbcType="VARCHAR" property="totalBug" />
+    <result column="summary" jdbcType="VARCHAR" property="summary" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, prd_addr, dev_addr, qa, dev, open_bug, close_bug, total_bug, summary, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from qa_report
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from qa_report
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.example.yang.pojo.QaReport" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into qa_report (prd_addr, dev_addr, qa, 
+      dev, open_bug, close_bug, 
+      total_bug, summary, create_time, 
+      update_time)
+    values (#{prdAddr,jdbcType=VARCHAR}, #{devAddr,jdbcType=VARCHAR}, #{qa,jdbcType=VARCHAR}, 
+      #{dev,jdbcType=VARCHAR}, #{openBug,jdbcType=INTEGER}, #{closeBug,jdbcType=VARCHAR}, 
+      #{totalBug,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.example.yang.pojo.QaReport" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into qa_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prdAddr != null">
+        prd_addr,
+      </if>
+      <if test="devAddr != null">
+        dev_addr,
+      </if>
+      <if test="qa != null">
+        qa,
+      </if>
+      <if test="dev != null">
+        dev,
+      </if>
+      <if test="openBug != null">
+        open_bug,
+      </if>
+      <if test="closeBug != null">
+        close_bug,
+      </if>
+      <if test="totalBug != null">
+        total_bug,
+      </if>
+      <if test="summary != null">
+        summary,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prdAddr != null">
+        #{prdAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="devAddr != null">
+        #{devAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="qa != null">
+        #{qa,jdbcType=VARCHAR},
+      </if>
+      <if test="dev != null">
+        #{dev,jdbcType=VARCHAR},
+      </if>
+      <if test="openBug != null">
+        #{openBug,jdbcType=INTEGER},
+      </if>
+      <if test="closeBug != null">
+        #{closeBug,jdbcType=VARCHAR},
+      </if>
+      <if test="totalBug != null">
+        #{totalBug,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.yang.pojo.QaReport">
+    <!--@mbg.generated-->
+    update qa_report
+    <set>
+      <if test="prdAddr != null">
+        prd_addr = #{prdAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="devAddr != null">
+        dev_addr = #{devAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="qa != null">
+        qa = #{qa,jdbcType=VARCHAR},
+      </if>
+      <if test="dev != null">
+        dev = #{dev,jdbcType=VARCHAR},
+      </if>
+      <if test="openBug != null">
+        open_bug = #{openBug,jdbcType=INTEGER},
+      </if>
+      <if test="closeBug != null">
+        close_bug = #{closeBug,jdbcType=VARCHAR},
+      </if>
+      <if test="totalBug != null">
+        total_bug = #{totalBug,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null">
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.yang.pojo.QaReport">
+    <!--@mbg.generated-->
+    update qa_report
+    set prd_addr = #{prdAddr,jdbcType=VARCHAR},
+      dev_addr = #{devAddr,jdbcType=VARCHAR},
+      qa = #{qa,jdbcType=VARCHAR},
+      dev = #{dev,jdbcType=VARCHAR},
+      open_bug = #{openBug,jdbcType=INTEGER},
+      close_bug = #{closeBug,jdbcType=VARCHAR},
+      total_bug = #{totalBug,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from qa_report
+  </select>
+</mapper>

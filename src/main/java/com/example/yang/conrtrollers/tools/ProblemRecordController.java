@@ -22,9 +22,9 @@ public class ProblemRecordController {
 
     // 分页查询
     @PostMapping(value = "/list")
-    public Object findPage(@RequestBody PageRequest pageRequest) {
+    public ResultVO findPage(@RequestBody PageRequest pageRequest) {
 
-        return problemRecordService.findPage(pageRequest);
+        return new ResultVO(SUCCESS, problemRecordService.findPage(pageRequest));
     }
 
     // 新增
